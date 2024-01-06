@@ -44,7 +44,7 @@ local content = {}
 local contentList = {}
 
 if(autoMaxLineSize == true) then
-    maxLineSize = math.floor((monitorMaxY/maxColumns)-3)
+    maxLineSize = math.floor((monitorMaxY/maxColumns))
     print(("max Y : %d maxLineSize : %d maxColumns : %d"):format(monitorMaxY, maxLineSize, maxColumns))
 end
 
