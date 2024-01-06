@@ -1,3 +1,7 @@
+print("c'est un script !")
+return
+
+
 local monitor = peripheral.wrap("right")
  
 if(monitor == nil) then
