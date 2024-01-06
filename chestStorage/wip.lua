@@ -49,7 +49,7 @@ for _, chest in pairs(inv) do
             content[itemData.displayName] = {}
         end
         if not (TableContains(contentList, itemData.displayName)) then
-            print(("adding %s"):format(itemData.displayName))
+            --print(("adding %s"):format(itemData.displayName))
             table.insert(contentList, itemData.displayName)
         end
         if (content[itemData.displayName].count == nil) then
@@ -84,7 +84,7 @@ monitor.setCursorPos(1,1)
 local x = 1
 table.sort(contentList)
 
-print(math.log10(content[contentList[item]].count)+1)
+print(math.log(content[contentList["Torch"]].count)+1)
 for item in pairs(contentList) do
     print(contentList[item])
     monitor.write(("%s x %d"):format(PadString(content[contentList[item]].name,maxLineSize-math.floor(math.log(content[contentList[item]].count)+1)), content[contentList[item]].count) )
