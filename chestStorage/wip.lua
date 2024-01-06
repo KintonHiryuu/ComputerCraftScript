@@ -1,6 +1,6 @@
 -- Setup Paramètres
 
-local maxLineSize = 18
+local maxLineSize = 10
 
 -- Setup Ecran
 local monitor = peripheral.wrap("right")
