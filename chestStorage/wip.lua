@@ -82,6 +82,7 @@ for item in pairs(contentList) do
     monitor.setCursorPos(1,x+1)
     x=x+1
 end
+print("Work In Progress Script")
 print("done")
  
 print(table.concat(contentList,", "))
