@@ -1,12 +1,19 @@
+-- Setup Paramètres
+
+local maxLineSize = 18
+
+-- Setup Ecran
 local monitor = peripheral.wrap("right")
- 
+
 if(monitor == nil) then
-    print("Aucun écran est disponible sur la droite du PC.")
+    print("Aucun écran disponible sur la droite du PC.")
     return
 end
+local monitorMaxX,monitorMaxY = monitor.getSize()
 monitor.setTextScale(0.5)
  
-function padString (sText, iLen)
+-- Setup Fonctions utiles
+function PadString (sText, iLen)
     local iTextLen = string.len(sText);
     if (iTextLen < iLen) then
         local iDiff = iLen - iTextLen;
@@ -18,7 +25,7 @@ function padString (sText, iLen)
     return(sText);
 end
  
-function tableContains(table, value)
+function TableContains(table, value)
     for i = 1,#table do
         if (table[i] == value) then
             return true
@@ -28,19 +35,20 @@ function tableContains(table, value)
 end
  
  
+-- Setup variables gloabl
 local inv = {peripheral.find("inventory") }
 local liquid = {peripheral.find("fluid_storage")}
 local content = {}
 local contentList = {}
- 
+
+-- Code
 for _, chest in pairs(inv) do
     for slot, item in pairs(chest.list()) do
         local itemData = chest.getItemDetail(slot)
         if (content[itemData.displayName] == nil) then
             content[itemData.displayName] = {}
         end
-        tableContains(contentList, itemData.displayName)
-        if not (tableContains(contentList, itemData.displayName)) then
+        if not (TableContains(contentList, itemData.displayName)) then
             print(("adding %s"):format(itemData.displayName))
             table.insert(contentList, itemData.displayName)
         end
@@ -78,7 +86,7 @@ table.sort(contentList)
  
 for item in pairs(contentList) do
     print(contentList[item])
-    monitor.write(("%s x %d"):format(padString(content[contentList[item]].name,18), content[contentList[item]].count))
+    monitor.write(("%s x %d nbr %d"):format(PadString(content[contentList[item]].name,maxLineSize-math.floor(math.log10(content[contentList[item]].count)+1)), content[contentList[item]].count), math.log10(content[contentList[item]].count)+1)
     monitor.setCursorPos(1,x+1)
     x=x+1
 end
