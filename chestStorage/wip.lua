@@ -77,15 +77,14 @@ for _, tanks in pairs(liquid) do
         end
     end
 end
- 
- 
+
+
 monitor.clear()
 monitor.setCursorPos(1,1)
 local x = 1
 table.sort(contentList)
 
 for item in pairs(contentList) do
-    print(contentList[item])
     content[contentList[item]].count = tostring(content[contentList[item]].count)
     monitor.write(("%s x %d"):format(PadString(content[contentList[item]].name,maxLineSize-string.len(content[contentList[item]].count)), content[contentList[item]].count) )
     monitor.setCursorPos(1,x+1)
@@ -93,5 +92,3 @@ for item in pairs(contentList) do
 end
 print("Work In Progress Script")
 print("done")
- 
-print(table.concat(contentList,", "))
