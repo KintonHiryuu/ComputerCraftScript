@@ -44,7 +44,7 @@ local content = {}
 local contentList = {}
 
 if(autoMaxLineSize == true) then
-    maxLineSize = math.floor((monitorMaxY/maxColumns))
+    maxLineSize = math.floor((monitorMaxY/maxColumns)-6)
     print(("max Y : %d maxLineSize : %d maxColumns : %d"):format(monitorMaxY, maxLineSize, maxColumns))
 end
 
@@ -101,7 +101,7 @@ for item in pairs(contentList) do
         cursorX = 1
         cursorY = cursorY+1
     else
-        cursorX = cursorX + maxLineSize +6
+        cursorX = cursorX + maxLineSize
     end
 end
 print("Work In Progress Script v0.3.1")
