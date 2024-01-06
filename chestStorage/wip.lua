@@ -1,6 +1,8 @@
 -- Setup Paramètres
 
-local maxLineSize = 10
+local maxLineSize = 17 -- auras toujours un +3 a la fin
+local autoMaxLineSize = true -- ré écrit la variable du dessus pour avoir la longueur max des écrans
+local maxColumns = 4 -- Nombre max de colonnes quand maxLineSize est auto 
 
 -- Setup Ecran
 local monitor = peripheral.wrap("right")
@@ -40,6 +42,10 @@ local inv = {peripheral.find("inventory") }
 local liquid = {peripheral.find("fluid_storage")}
 local content = {}
 local contentList = {}
+
+if(autoMaxLineSize == true) then
+    maxLineSize = math.floor((monitorMaxY/maxColumns)-3)
+end
 
 -- Code
 for _, chest in pairs(inv) do
@@ -84,11 +90,18 @@ monitor.setCursorPos(1,1)
 local x = 1
 table.sort(contentList)
 
+local cursorX, cursorY = 1, 1
+
 for item in pairs(contentList) do
     content[contentList[item]].count = tostring(content[contentList[item]].count)
     monitor.write(("%s x %d"):format(PadString(content[contentList[item]].name,maxLineSize-string.len(content[contentList[item]].count)), content[contentList[item]].count) )
-    monitor.setCursorPos(1,x+1)
-    x=x+1
+    monitor.setCursorPos(cursorX,cursorY)
+    if(cursorX+maxLineSize+3 >= monitorMaxX-3) then
+        cursorX = 1
+        cursorY = cursorY+1
+    else
+        cursorX = cursorX + maxLineSize +3
+    end
 end
 print("Work In Progress Script")
 print("done")
