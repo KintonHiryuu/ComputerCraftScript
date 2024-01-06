@@ -95,7 +95,7 @@ local cursorX, cursorY = 1, 1
 
 for item in pairs(contentList) do
     content[contentList[item]].count = tostring(content[contentList[item]].count)
-    monitor.write(("%s x %d"):format(PadString(content[contentList[item]].name,maxLineSize-string.len(content[contentList[item]].count)), content[contentList[item]].count) )
+    monitor.write(("%s x %d |"):format(PadString(content[contentList[item]].name,maxLineSize-string.len(content[contentList[item]].count)), content[contentList[item]].count) )
     monitor.setCursorPos(cursorX,cursorY)
     if(cursorX+maxLineSize+3 >= monitorMaxX-3) then
         cursorX = 1
