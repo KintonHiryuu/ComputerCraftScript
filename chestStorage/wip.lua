@@ -12,7 +12,7 @@ if(monitor == nil) then
     return
 end
 local monitorMaxX,monitorMaxY = monitor.getSize()
-monitor.setTextScale(0.5)
+monitor.setTextScale(1)
  
 -- Setup Fonctions utiles
 function PadString (sText, iLen)
@@ -97,11 +97,11 @@ for item in pairs(contentList) do
     content[contentList[item]].count = tostring(content[contentList[item]].count)
     monitor.write(("%s x %d |"):format(PadString(content[contentList[item]].name,maxLineSize-string.len(content[contentList[item]].count)), content[contentList[item]].count) )
     monitor.setCursorPos(cursorX,cursorY)
-    if(cursorX+maxLineSize+3 >= monitorMaxX-3) then
+    if(cursorX+maxLineSize+4 >= monitorMaxX-3) then
         cursorX = 1
         cursorY = cursorY+1
     else
-        cursorX = cursorX + maxLineSize +3
+        cursorX = cursorX + maxLineSize +6
     end
 end
 print("Work In Progress Script")
