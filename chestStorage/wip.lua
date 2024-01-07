@@ -106,5 +106,5 @@ for item in pairs(contentList) do
         cursorX = cursorX + maxLineSize
     end
 end
-print("Work In Progress Script v0.3.1")
+print("Work In Progress Script v0.3.3")
 print("done")
