@@ -48,9 +48,11 @@ local content = {}
 local contentList = {}
 
 if(autoMaxLineSize == true) then
-    maxLineSize = math.floor((monitorMaxY/maxColumns))
-    maxLineSize = math.floor(maxLineSize / (1-textScale))
-    print(("max Y : %d maxLineSize : %d maxColumns : %d textScaleRatio : %d"):format(monitorMaxY, maxLineSize, maxColumns, (1-textScale)))
+    maxLineSize = math.floor((monitorMaxX/maxColumns)+3)
+    if(textScale ~= 1) then
+        maxLineSize = math.floor(maxLineSize / (1-textScale))
+    end
+    print(("max X : %d maxLineSize : %d maxColumns : %d textScaleRatio : %d"):format(monitorMaxX, maxLineSize, maxColumns, (1-textScale)))
 end
 
 -- Code
