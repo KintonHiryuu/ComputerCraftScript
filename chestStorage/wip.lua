@@ -5,6 +5,9 @@ local autoMaxLineSize = true -- ré écrit la variable du dessus pour avoir la l
 local maxColumns = 4 -- Nombre max de colonnes quand maxLineSize est auto 
 local textScale = 1 -- taille du text
 
+
+print("Work In Progress Script v0.3.4")
+
 -- Setup Ecran
 local monitor = peripheral.wrap("right")
 
@@ -45,8 +48,8 @@ local content = {}
 local contentList = {}
 
 if(autoMaxLineSize == true) then
-    maxLineSize = math.floor((monitorMaxY/maxColumns)-6)
-    maxLineSize = math.floor(maxLineSize * (1-textScale))
+    maxLineSize = math.floor((monitorMaxY/maxColumns))
+    maxLineSize = math.floor(maxLineSize / (1-textScale))
     print(("max Y : %d maxLineSize : %d maxColumns : %d textScaleRatio : %d"):format(monitorMaxY, maxLineSize, maxColumns, (1-textScale)))
 end
 
@@ -106,5 +109,4 @@ for item in pairs(contentList) do
         cursorX = cursorX + maxLineSize
     end
 end
-print("Work In Progress Script v0.3.3")
 print("done")
