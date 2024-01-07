@@ -3,6 +3,7 @@
 local maxLineSize = 17 -- auras toujours un +3 a la fin
 local autoMaxLineSize = true -- ré écrit la variable du dessus pour avoir la longueur max des écrans
 local maxColumns = 4 -- Nombre max de colonnes quand maxLineSize est auto 
+local textScale = 1 -- taille du text
 
 -- Setup Ecran
 local monitor = peripheral.wrap("right")
@@ -12,7 +13,7 @@ if(monitor == nil) then
     return
 end
 local monitorMaxX,monitorMaxY = monitor.getSize()
-monitor.setTextScale(1)
+monitor.setTextScale(textScale)
  
 -- Setup Fonctions utiles
 function PadString (sText, iLen)
@@ -45,7 +46,8 @@ local contentList = {}
 
 if(autoMaxLineSize == true) then
     maxLineSize = math.floor((monitorMaxY/maxColumns)-6)
-    print(("max Y : %d maxLineSize : %d maxColumns : %d"):format(monitorMaxY, maxLineSize, maxColumns))
+    maxLineSize = math.floor(maxLineSize * (1-textScale))
+    print(("max Y : %d maxLineSize : %d maxColumns : %d textScaleRatio : %d"):format(monitorMaxY, maxLineSize, maxColumns, (1-textScale)))
 end
 
 -- Code
@@ -104,5 +106,5 @@ for item in pairs(contentList) do
         cursorX = cursorX + maxLineSize
     end
 end
-print("Work In Progress Script v0.3.2")
+print("Work In Progress Script v0.3.1")
 print("done")
