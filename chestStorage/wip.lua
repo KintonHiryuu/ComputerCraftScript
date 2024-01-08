@@ -6,7 +6,7 @@ local maxColumns = 4 -- Nombre max de colonnes quand maxLineSize est auto
 local textScale = 1 -- taille du text
 
 
-print("Work In Progress Script v0.3.5")
+print("Work In Progress Script v0.3.6")
 
 -- Setup Ecran
 local monitor = peripheral.wrap("right")
