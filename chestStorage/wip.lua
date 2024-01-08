@@ -6,7 +6,7 @@ local maxColumns = 4 -- Nombre max de colonnes quand maxLineSize est auto
 local textScale = 1 -- taille du text
 
 
-print("Work In Progress Script v0.3.4")
+print("Work In Progress Script v0.3.5")
 
 -- Setup Ecran
 local monitor = peripheral.wrap("right")
@@ -50,9 +50,9 @@ local contentList = {}
 if(autoMaxLineSize == true) then
     maxLineSize = math.floor((monitorMaxX/maxColumns)+3)
     if(textScale ~= 1) then
-        maxLineSize = math.floor(maxLineSize / (1-textScale))
+        maxLineSize = math.floor(maxLineSize / (textScale))
     end
-    print(("max X : %d maxLineSize : %d maxColumns : %d textScaleRatio : %d"):format(monitorMaxX, maxLineSize, maxColumns, (1-textScale)))
+    print(("max X : %d maxLineSize : %d maxColumns : %d textScaleRatio : %3f"):format(monitorMaxX, maxLineSize, maxColumns, (textScale)))
 end
 
 -- Code
@@ -102,7 +102,7 @@ local cursorX, cursorY = 1, 1
 
 for item in pairs(contentList) do
     content[contentList[item]].count = tostring(content[contentList[item]].count)
-    monitor.write(("%s x %d |"):format(PadString(content[contentList[item]].name,maxLineSize-string.len(content[contentList[item]].count)), content[contentList[item]].count) )
+    monitor.write(("%s x %d "):format(PadString(content[contentList[item]].name,maxLineSize-string.len(content[contentList[item]].count)-4), content[contentList[item]].count) )
     monitor.setCursorPos(cursorX,cursorY)
     if(cursorX+maxLineSize+4 >= monitorMaxX-3) then
         cursorX = 1
